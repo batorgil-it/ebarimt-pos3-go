@@ -5,11 +5,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/batorgil-it/ebarimt-pos3-go/constants"
+	ebarimt3SdkServices "github.com/batorgil-it/ebarimt-pos3-go/services"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 	"github.com/stretchr/testify/assert"
-	"github.com/techpartners-asia/ebarimt-pos3-go/constants"
-	ebarimt3SdkServices "github.com/techpartners-asia/ebarimt-pos3-go/services"
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
-	"github.com/techpartners-asia/ebarimt-pos3-go/utils"
 )
 
 var items = []structs.CreateItemInputModel{{
@@ -89,11 +89,11 @@ func TestItems(t *testing.T) {
 func TestSendMail(t *testing.T) {
 	ebarimt3SdkServices.SendMail(
 		ebarimt3SdkServices.EmailInput{
-			Email:    "burabatbold2@gmail.com",
-			From:     "no-reply@lifetech.mn",
-			Password: "wSsVR61+rxPzCagvzjP+I+Y4nA5UAQikHE1721Xwv3P0S6+X9ccynxfMDQb2FKAeQ25hQGdBpb8qzhlShjdf2ot8yAxSWiiF9mqRe1U4J3x17qnvhDzPWm1UlBqOJY8AwgtpnmBnF80q+g==",
-			User:     "emailapikey",
-			SmtpHost: "smtp.zeptomail.com",
+			Email:    "batorgil.it@gmail.com",
+			From:     "noreply@dlife.mn",
+			Password: "bUhxL1NRyXAt",
+			User:     "noreply@dlife.mn",
+			SmtpHost: "smtp.zoho.com",
 			SmtpPort: "587",
 			Response: structs.ReceiptResponse{
 				QrData:       "5407284065424164431453299078758426279428312571101109500241404625729681071321549735501597491072545005682667748344848224388939135598794838760522384975371681",
