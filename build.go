@@ -3,9 +3,9 @@ package ebarimtv3
 import (
 	"fmt"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/constants"
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
-	"github.com/techpartners-asia/ebarimt-pos3-go/utils"
+	"github.com/batorgil-it/ebarimt-pos3-go/constants"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 )
 
 func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.ReceiptRequest {

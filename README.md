@@ -1,6 +1,6 @@
 # 🧾 ebarimt-pos3-go
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/techpartners-asia/ebarimt-pos3-go)](https://goreportcard.com/report/github.com/techpartners-asia/ebarimt-pos3-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/batorgil-it/ebarimt-pos3-go)](https://goreportcard.com/report/github.com/batorgil-it/ebarimt-pos3-go)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Go Version](https://img.shields.io/badge/Go-1.23.5-blue.svg)](https://golang.org)
 [![GORM](https://img.shields.io/badge/GORM-v1.25.12-green.svg)](https://gorm.io)
@@ -19,7 +19,7 @@
 ## 📦 Installation
 
 ```bash
-go get github.com/techpartners-asia/ebarimt-pos3-go
+go get github.com/batorgil-it/ebarimt-pos3-go
 ```
 
 ## 🚀 Quick Start
@@ -28,7 +28,7 @@ go get github.com/techpartners-asia/ebarimt-pos3-go
 package main
 
 import (
-    "github.com/techpartners-asia/ebarimt-pos3-go"
+    "github.com/batorgil-it/ebarimt-pos3-go"
     "gorm.io/gorm"
 )
 
@@ -58,7 +58,7 @@ func main() {
 
 ## 📚 Documentation
 
-For detailed documentation and examples, please visit our [documentation](https://github.com/techpartners-asia/ebarimt-pos3-go/wiki).
+For detailed documentation and examples, please visit our [documentation](https://github.com/batorgil-it/ebarimt-pos3-go/wiki).
 
 ## 📁 Project Structure
 

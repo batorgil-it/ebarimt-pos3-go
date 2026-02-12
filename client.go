@@ -3,13 +3,13 @@ package ebarimtv3
 import (
 	"fmt"
 
-	ebarimt3SdkServices "github.com/techpartners-asia/ebarimt-pos3-go/services"
-	models "github.com/techpartners-asia/ebarimt-pos3-go/structs"
-	"github.com/techpartners-asia/ebarimt-pos3-go/utils"
+	ebarimt3SdkServices "github.com/batorgil-it/ebarimt-pos3-go/services"
+	models "github.com/batorgil-it/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/constants"
-	"github.com/techpartners-asia/ebarimt-pos3-go/pos3"
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/constants"
+	"github.com/batorgil-it/ebarimt-pos3-go/pos3"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 	"gorm.io/gorm"
 )
 

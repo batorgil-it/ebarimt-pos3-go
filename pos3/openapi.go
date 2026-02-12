@@ -3,7 +3,7 @@ package pos3
 import (
 	"encoding/json"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 )
 
 // Цахим төлбөрийн баримтын систем /PosApi/-ээс үүсгэж буй төлбөрийн баримтын үйл ажиллагаа явуулж буй байршлын мэдээллийг “districtCode” гэсэн баганад бөглөн илгээдэг ба дээрх талбарт бөглөн, илгээх байршлын татварын алба, дэд албаны кодын жагсаалтын мэдээллийг энэхүү сервисээс авах боломжтой.

@@ -8,9 +8,9 @@ import (
 	"math"
 	"net/smtp"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/constants"
-	models "github.com/techpartners-asia/ebarimt-pos3-go/structs"
-	"github.com/techpartners-asia/ebarimt-pos3-go/utils"
+	"github.com/batorgil-it/ebarimt-pos3-go/constants"
+	models "github.com/batorgil-it/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 )
 
 type EmailInput struct {

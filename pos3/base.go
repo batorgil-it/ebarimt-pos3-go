@@ -1,7 +1,7 @@
 package pos3
 
 import (
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 )
 
 type pos3 struct {

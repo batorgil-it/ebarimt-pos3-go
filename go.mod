@@ -1,4 +1,4 @@
-module github.com/techpartners-asia/ebarimt-pos3-go
+module github.com/batorgil-it/ebarimt-pos3-go
 
 go 1.24.2
 

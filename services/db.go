@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 	"gorm.io/gorm"
 )
 
@@ -33,7 +33,6 @@ type (
 		InvoiceID    string           `gorm:"invoice_id" json:"invoice_id"`
 		PosID        float64          `gorm:"pos_id" json:"pos_id"`
 		Message      string           `gorm:"message" json:"message"`
-		QrData       string           `gorm:"qr_data" json:"qr_data"`
 		Lottery      string           `gorm:"lottery" json:"lottery"`
 		Date         string           `gorm:"date" json:"date"`
 		IsRefund     bool             `gorm:"is_refund" json:"is_refund"`
@@ -92,7 +91,6 @@ func SaveEbarimt(db *gorm.DB, res *structs.ReceiptResponse) {
 		BillID:       res.ID,
 		Date:         res.Date,
 		Lottery:      res.Lottery,
-		QrData:       res.QrData,
 		MerchantTin:  res.MerchantTIN,
 		PosNo:        res.PosNo,
 		Message:      res.Message,

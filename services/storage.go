@@ -7,11 +7,11 @@ import (
 	"image/png"
 	"time"
 
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 	"github.com/boombuler/barcode"
 	"github.com/boombuler/barcode/qr"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
 )
 
 type StorageService struct {

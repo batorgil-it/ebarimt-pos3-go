@@ -9,32 +9,33 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
-	"github.com/techpartners-asia/ebarimt-pos3-go/utils"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 )
 
 var (
 	TokenAPI = utils.API{
-		Url:    "https://auth.itc.gov.mn/auth/realms/ITC/protocol/openid-connect/token",
+		// https://developer.itc.gov.mn/docs/ebarimt-api/h4qz7kqjzd3p3-token-avah
+		Url:    "https://st.auth.itc.gov.mn/auth/realms/Staging/protocol/openid-connect/token",
 		Method: http.MethodPost,
 	}
 
 	// Нээлттэй API холболт
 	GetBranchInfoAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/info/check/getBranchInfo",
+		Url:    "https://tobe-determined/api/info/check/getBranchInfo",
 		Method: http.MethodGet,
 		IsAuth: false,
 		DevUrl: "https://st-api.ebarimt.mn/api/info/check/getBranchInfo",
 	}
 	GetTinInfoAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/info/check/getTinInfo?regNo=",
+		Url:    "https://tobe-determined/api/info/check/getTinInfo?regNo=",
 		Method: http.MethodGet,
 		IsAuth: false,
 		DevUrl: "https://st-api.ebarimt.mn/api/info/check/getTinInfo?regNo=",
 	}
 
 	GetInfoAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/info/check/getInfo?tin=",
+		Url:    "https://tobe-determined/api/info/check/getInfo?tin=",
 		Method: http.MethodGet,
 		IsAuth: false,
 		DevUrl: "https://st-api.ebarimt.mn/api/info/check/getInfo?tin=",
@@ -64,19 +65,22 @@ var (
 
 	// Цахим төлбөрийн баримт API холболт
 	GetSalesTotalAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/tpi/receipt/getSalesTotalData",
+		Url:    "https://tobe-determined/api/tpi/receipt/getSalesTotalData",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-api.ebarimt.mn/api/tpi/receipt/getSalesTotalData",
 	}
 	GetSalesListERPAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/tpi/receipt/getSaleListERP",
+		Url:    "https://tobe-determined/api/tpi/receipt/getSaleListERP",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-api.ebarimt.mn/api/tpi/receipt/getSaleListERP",
 	}
 	SaveOprMerchantsAPI = utils.API{
-		Url:    "https://ebarimt.techpartners.asia/api/tpi/receipt/%20saveOprMerchants",
+		Url:    "https://tobe-determined/api/tpi/receipt/%20saveOprMerchants",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-api.ebarimt.mn/api/tpi/receipt/%20saveOprMerchants",
 	}
 
 	// Хялбар бүртгэл API холболт
@@ -84,32 +88,38 @@ var (
 		Url:    "https://service.itc.gov.mn/api/easy-register/api/info/consumer/",
 		Method: http.MethodGet,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/api/info/consumer/",
 	}
 	GetProfileAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/easy-register/rest/v1/getProfile",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/rest/v1/getProfile",
 	}
 	ApproveQrAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/easy-register/rest/v1/approveQr",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/rest/v1/approveQr",
 	}
 
 	ForiegnerPassportInfoAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/easy-register/api/info/foreigner/",
 		Method: http.MethodGet,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/api/info/foreigner/",
 	}
 	ForiegnerCustomerNoInfoAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/easy-register/api/info/foreigner/customerNo/",
 		Method: http.MethodGet,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/api/info/foreigner/customerNo/",
 	}
 	ForiegnerInfoRegAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/easy-register/api/info/foreigner/",
 		Method: http.MethodPut,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/easy-register/api/info/foreigner/",
 	}
 
 	// ОАТ API холболт
@@ -117,11 +127,13 @@ var (
 		Url:    "https://service.itc.gov.mn/rest/tpiMain/mainApi/getInventoryList",
 		Method: http.MethodGet,
 		IsAuth: false,
+		DevUrl: "https://st-service.itc.gov.mn/rest/tpiMain/mainApi/getInventoryList",
 	}
 	GetActiveStockNoPosAPI = utils.API{
 		Url:    "https://service.itc.gov.mn/api/inventory/getActiveStockNoPos",
 		Method: http.MethodPost,
 		IsAuth: true,
+		DevUrl: "https://st-service.itc.gov.mn/api/inventory/getActiveStockNoPos",
 	}
 )
 

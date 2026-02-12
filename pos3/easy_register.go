@@ -3,7 +3,7 @@ package pos3
 import (
 	"encoding/json"
 
-	"github.com/techpartners-asia/ebarimt-pos3-go/structs"
+	"github.com/batorgil-it/ebarimt-pos3-go/structs"
 )
 
 func (p *pos3) ConsumerInfo(regNo string) (structs.ConsumerInfoResponse, error) {

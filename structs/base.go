@@ -1,7 +1,7 @@
 package structs
 
 import (
-	"github.com/techpartners-asia/ebarimt-pos3-go/constants"
+	"github.com/batorgil-it/ebarimt-pos3-go/constants"
 )
 
 type (
