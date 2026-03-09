@@ -33,7 +33,6 @@ type (
 		InvoiceID    string           `gorm:"invoice_id" json:"invoice_id"`
 		PosID        float64          `gorm:"pos_id" json:"pos_id"`
 		Message      string           `gorm:"message" json:"message"`
-		Lottery      string           `gorm:"lottery" json:"lottery"`
 		Date         string           `gorm:"date" json:"date"`
 		IsRefund     bool             `gorm:"is_refund" json:"is_refund"`
 		Receipts     []EbarimtReceipt `gorm:"foreignKey:EbarimtID" json:"receipts"`
@@ -90,7 +89,6 @@ func SaveEbarimt(db *gorm.DB, res *structs.ReceiptResponse) {
 		DistrictCode: res.DistrictCode,
 		BillID:       res.ID,
 		Date:         res.Date,
-		Lottery:      res.Lottery,
 		MerchantTin:  res.MerchantTIN,
 		PosNo:        res.PosNo,
 		Message:      res.Message,

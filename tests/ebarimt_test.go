@@ -46,6 +46,21 @@ func TestAmounts(t *testing.T) {
 	assert.Equal(7.53, utils.NumberPrecision(totalVat), "GetVat func is not correct")
 }
 
+func TestGetBranchInfo(t *testing.T) {
+	assert := assert.New(t)
+
+	sdk := NewSdk()
+
+	res, err := sdk.GetBranchInfo()
+	assert.Nil(err, fmt.Sprintf("Ebarimt Error : %v ", res.Msg))
+
+	assert.Equal(constants.POS_STATUS_SUCCESS, res.Status, "Ebarimt Error : %v", res.Msg)
+
+	for _, branch := range res.Data {
+		fmt.Println(branch.BranchCode, branch.BranchName, branch.SubBranchCode, branch.SubBranchName)
+	}
+}
+
 func TestVats(t *testing.T) {
 	assert := assert.New(t)
 
@@ -89,26 +104,26 @@ func TestItems(t *testing.T) {
 func TestSendMail(t *testing.T) {
 	ebarimt3SdkServices.SendMail(
 		ebarimt3SdkServices.EmailInput{
-			Email:    "batorgil.it@gmail.com",
+			Email:    "e.munkhsukh@gmail.com",
 			From:     "noreply@dlife.mn",
 			Password: "bUhxL1NRyXAt",
 			User:     "noreply@dlife.mn",
 			SmtpHost: "smtp.zoho.com",
 			SmtpPort: "587",
 			Response: structs.ReceiptResponse{
-				QrData:       "5407284065424164431453299078758426279428312571101109500241404625729681071321549735501597491072545005682667748344848224388939135598794838760522384975371681",
-				ID:           "1234567890",
+				QrData:       "428603689082365032246256586221443513359539633956812997336620885218633919593170065215693420197260872048943341453227343251885558988635319064587231649100449282811884172614913179956816409",
+				ID:           "037900846788001095290000010012802",
 				Date:         time.Now().Format("2006-01-02"),
-				TotalAmount:  100,
-				TotalVat:     10,
-				TotalCityTax: 10,
+				TotalAmount:  5000,
+				TotalVat:     454.54,
+				TotalCityTax: 0,
 				Receipts: []structs.Receipt{
 					{
 						Items: []structs.Item{
 							{
-								Name:        "Test",
+								Name:        "/4020 - SERVICE тоот/ -ын 1 сарын сунгалт",
 								Qty:         1,
-								TotalAmount: 100,
+								TotalAmount: 5000,
 							},
 						},
 					},
