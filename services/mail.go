@@ -14,14 +14,15 @@ import (
 )
 
 type EmailInput struct {
-	Email    string                 `json:"email"`
-	Subtitle string                 `json:"subtitle"`
-	From     string                 `json:"from"`
-	User     string                 `json:"user"`
-	Password string                 `json:"password"`
-	SmtpHost string                 `json:"smtp_host"`
-	SmtpPort string                 `json:"smtp_port"`
-	Response models.ReceiptResponse `json:"response"`
+	Email        string                 `json:"email"`
+	Subtitle     string                 `json:"subtitle"`
+	From         string                 `json:"from"`
+	User         string                 `json:"user"`
+	Password     string                 `json:"password"`
+	SmtpHost     string                 `json:"smtp_host"`
+	SmtpPort     string                 `json:"smtp_port"`
+	TemplatePath string                 `json:"template_path"`
+	Response     models.ReceiptResponse `json:"response"`
 }
 
 type SendEmailBody struct {
@@ -69,7 +70,7 @@ func SendMail(input EmailInput) error {
 		emailBody.BillType = "Хувь хүн"
 	}
 
-	templatePath := "../files/mail/ebarimt.html"
+	templatePath := input.TemplatePath
 
 	t, err := template.ParseFiles(templatePath)
 	if err != nil {

@@ -24,6 +24,7 @@ type (
 		MailFrom     string
 		MailPassword string
 		MailUser     string
+		TemplatePath string
 	}
 	Input struct {
 		Endpoint    string
@@ -38,6 +39,7 @@ type (
 		MailFrom     string
 		MailPassword string
 		MailUser     string
+		TemplatePath string
 	}
 )
 
@@ -61,6 +63,7 @@ func New(input Input) *EbarimtClient {
 		input.MailFrom,
 		input.MailPassword,
 		input.MailUser,
+		input.TemplatePath,
 	}
 }
 
@@ -122,13 +125,14 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 		// TODO : Send Ebarimt to Mail
 		ebarimt3SdkServices.SendMail(
 			ebarimt3SdkServices.EmailInput{
-				Email:    input.MailTo,
-				From:     e.MailFrom,
-				User:     e.MailUser,
-				Password: e.MailPassword,
-				SmtpHost: e.MailHost,
-				SmtpPort: e.MailPort,
-				Response: res,
+				Email:        input.MailTo,
+				From:         e.MailFrom,
+				User:         e.MailUser,
+				Password:     e.MailPassword,
+				SmtpHost:     e.MailHost,
+				SmtpPort:     e.MailPort,
+				TemplatePath: e.TemplatePath,
+				Response:     res,
 			},
 		)
 	}
