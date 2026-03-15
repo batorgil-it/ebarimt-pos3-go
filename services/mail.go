@@ -58,7 +58,7 @@ func SendMail(input EmailInput) error {
 	// }
 
 	emailBody := SendEmailBody{
-		Date:         utils.FormatDate(input.Response.Date),
+		Date:         input.Response.Date,
 		TotalAmount:  utils.FloatToStr(math.Round(input.Response.TotalAmount*100) / 100),
 		TotalVat:     utils.FloatToStr(math.Round(input.Response.TotalVat*100) / 100),
 		TotalCityTax: utils.FloatToStr(math.Round(input.Response.TotalCityTax*100) / 100),
