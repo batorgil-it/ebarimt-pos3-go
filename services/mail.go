@@ -23,6 +23,7 @@ type EmailInput struct {
 	SmtpPort     string                 `json:"smtp_port"`
 	TemplatePath string                 `json:"template_path"`
 	Response     models.ReceiptResponse `json:"response"`
+	CustomerInfo models.GetInfoResponse `json:"customer_info"`
 }
 
 type SendEmailBody struct {
@@ -35,6 +36,9 @@ type SendEmailBody struct {
 	Type         string `json:"type"`
 	TotalCityTax string `json:"total_city_tax"`
 	Image        string `json:"image"`
+	OrgName      string `json:"org_name"`
+	OrgTin       string `json:"org_tin"`
+	BranchNo     string `json:"branch_no"`
 	Items        []struct {
 		Name         string `json:"name"`
 		Qty          string `json:"qty"`
@@ -61,6 +65,9 @@ func SendMail(input EmailInput) error {
 		BillID:       input.Response.ID,
 		Lottery:      input.Response.Lottery,
 		Image:        "cid:qr-code",
+		OrgName:      input.CustomerInfo.Data.Name,
+		OrgTin:       input.Response.CustomerTIN,
+		BranchNo:     input.Response.BranchNo,
 	}
 
 	if input.Response.Type == constants.RECEIPT_B2B_RECEIPT {
