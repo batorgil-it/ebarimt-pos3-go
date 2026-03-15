@@ -145,7 +145,6 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 			},
 		)
 	}
-
 	return &res, nil
 }
 

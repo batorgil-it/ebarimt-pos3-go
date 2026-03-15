@@ -7,14 +7,10 @@ require (
 	github.com/minio/minio-go/v7 v7.0.91
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/stretchr/testify v1.10.0
-	github.com/techpartners-asia/ebarimt-go v1.0.11
 	gorm.io/gorm v1.25.12
 )
 
-require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
-	golang.org/x/crypto v0.36.0 // indirect
-)
+require golang.org/x/crypto v0.36.0 // indirect
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
