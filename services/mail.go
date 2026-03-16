@@ -15,7 +15,7 @@ import (
 
 type EmailInput struct {
 	Email        string                 `json:"email"`
-	Subtitle     string                 `json:"subtitle"`
+	Subject      string                 `json:"subject"`
 	From         string                 `json:"from"`
 	User         string                 `json:"user"`
 	Password     string                 `json:"password"`
@@ -98,7 +98,7 @@ func SendMail(input EmailInput) error {
 	var fullEmail bytes.Buffer
 	fullEmail.WriteString(fmt.Sprintf("From: %s\r\n", input.From))
 	fullEmail.WriteString(fmt.Sprintf("To: %s\r\n", input.Email))
-	fullEmail.WriteString("Subject: Төлбөрийн баримт\r\n")
+	fullEmail.WriteString(fmt.Sprintf("Subject: %s\r\n", input.Subject))
 	fullEmail.WriteString("MIME-Version: 1.0\r\n")
 	fullEmail.WriteString(fmt.Sprintf("Content-Type: multipart/related; boundary=%s\r\n", boundary))
 	fullEmail.WriteString("\r\n")
