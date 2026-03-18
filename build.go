@@ -9,6 +9,7 @@ import (
 )
 
 func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.ReceiptRequest {
+	orgName := ""
 	ebarimtRequest := structs.ReceiptRequest{
 		BranchNo: fmt.Sprintf("%v", input.BranchNo),
 		DistrictCode: func() string {
@@ -31,6 +32,9 @@ func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.Rec
 				if res.Status != 200 {
 					return ""
 				}
+
+				orgName = res.Data.Name
+
 				return input.CustomerTin
 			}
 
@@ -39,6 +43,17 @@ func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.Rec
 				if err != nil {
 					return ""
 				}
+
+				res, err := e.GetInfo(input.CustomerTin)
+				if err != nil {
+					return ""
+				}
+
+				if res.Status != 200 {
+					return ""
+				}
+
+				orgName = res.Data.Name
 				return fmt.Sprintf("%d", tin.Data)
 			}
 			return ""
@@ -53,7 +68,10 @@ func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.Rec
 			}
 			return nil
 		}(),
+		OrgCode: input.OrgCode,
 	}
+
+	ebarimtRequest.OrgName = orgName
 
 	return ebarimtRequest
 }

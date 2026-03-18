@@ -125,15 +125,6 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 
 	if e.MailHost != "" && e.MailPort != "" && e.MailFrom != "" && e.MailPassword != "" && input.MailTo != "" {
 		// * NOTE * : Step - 6 : Send Ebarimt to Mail
-		// TODO : Send Ebarimt to Mail
-		cInfo := models.GetInfoResponse{}
-		if input.CustomerTin != "" {
-			customerInfo, err := e.GetInfo(input.CustomerTin)
-			if err != nil {
-				return nil, err
-			}
-			cInfo = customerInfo
-		}
 		ebarimt3SdkServices.SendMail(
 			ebarimt3SdkServices.EmailInput{
 				Email:        input.MailTo,
@@ -145,7 +136,7 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 				SmtpPort:     e.MailPort,
 				TemplatePath: e.TemplatePath,
 				Response:     res,
-				CustomerInfo: cInfo,
+				OrgName:      request.OrgName,
 			},
 		)
 	}

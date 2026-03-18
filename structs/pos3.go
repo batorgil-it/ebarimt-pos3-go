@@ -260,6 +260,10 @@ type (
 		Data         interface{}           `json:"data"`         // Багц төлбөрийн баримтын нэмэлт өгөгдөл JSON
 		Receipts     []Receipt             `json:"receipts"`     // Дэд төлбөрийн баримтууд
 		Payments     []Payment             `json:"payments"`     // Төлбөрийн хэлбэр
+
+		// populated
+		OrgCode string `json:"-"`
+		OrgName string `json:"-"`
 	}
 
 	// Дэд төлбөрийн баримтын мэдээлэл
