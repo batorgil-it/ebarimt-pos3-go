@@ -23,7 +23,6 @@ type EmailInput struct {
 	SmtpPort     string                 `json:"smtp_port"`
 	TemplatePath string                 `json:"template_path"`
 	Response     models.ReceiptResponse `json:"response"`
-	OrgName      string                 `json:"org_name"`
 }
 
 type SendEmailBody struct {
@@ -65,7 +64,7 @@ func SendMail(input EmailInput) error {
 		BillID:       input.Response.ID,
 		Lottery:      input.Response.Lottery,
 		Image:        "cid:qr-code",
-		OrgName:      input.OrgName,
+		OrgName:      input.Response.OrgName,
 		OrgTin:       input.Response.CustomerTIN,
 		BranchNo:     input.Response.BranchNo,
 	}

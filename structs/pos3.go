@@ -338,6 +338,10 @@ type (
 		Lottery      string                `json:"lottery"`      // Сугалааны дугаар
 		Date         string                `json:"date"`         // Баримт хэвэлсэн огноо ("yyyy-MM-dd HH:mm:ss" форматтай огноо)
 		Easy         bool                  `json:"easy"`         // Хялбар бүртгэл хийгдсэн эсэх /true - хялбар бүртгэлд бүртгэсэн /false - хялбар бүртгэлд бүртгээгүй
+
+		// later added
+		OrgCode string `json:"org_code"`
+		OrgName string `json:"org_name"`
 	}
 
 	// Дэд төлбөрийн баримтын мэдээлэл

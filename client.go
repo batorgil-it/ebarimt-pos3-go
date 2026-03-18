@@ -118,6 +118,9 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 
 	fmt.Println("Ebarimt Other Tax Type RESPONSE", res)
 
+	res.OrgName = request.OrgName
+	res.OrgCode = request.OrgCode
+
 	// * NOTE * : Step - 5 : Save Ebarimt to DB
 	if e.DB != nil {
 		ebarimt3SdkServices.SaveEbarimt(e.DB, &res)
@@ -136,7 +139,6 @@ func (e *EbarimtClient) Create(input models.CreateInputModel) (*structs.ReceiptR
 				SmtpPort:     e.MailPort,
 				TemplatePath: e.TemplatePath,
 				Response:     res,
-				OrgName:      request.OrgName,
 			},
 		)
 	}
