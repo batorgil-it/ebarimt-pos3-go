@@ -44,13 +44,13 @@ func (e *EbarimtClient) buildRequest(input structs.CreateInputModel) structs.Rec
 					return ""
 				}
 
-				res, err := e.GetInfo(input.CustomerTin)
+				res, err := e.GetInfo(fmt.Sprintf("%d", tin.Data))
 				if err != nil {
-					return ""
+					return fmt.Sprintf("%d", tin.Data)
 				}
 
 				if res.Status != 200 {
-					return ""
+					return fmt.Sprintf("%d", tin.Data)
 				}
 
 				orgName = res.Data.Name
