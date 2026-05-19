@@ -144,12 +144,11 @@ type CustomHeader struct {
 
 func (p *pos3) httpRequest(body interface{}, api utils.API, ext string, headers []CustomHeader) ([]byte, error) {
 
-	var requestByte []byte
 	var requestBody *bytes.Reader
 	if body == nil {
 		requestBody = bytes.NewReader(nil)
 	} else {
-		requestByte, _ = json.Marshal(body)
+		requestByte, _ := json.Marshal(body)
 		requestBody = bytes.NewReader(requestByte)
 	}
 
@@ -158,10 +157,11 @@ func (p *pos3) httpRequest(body interface{}, api utils.API, ext string, headers 
 		url = api.DevUrl + ext
 	}
 
-	req, _ := http.NewRequest(api.Method, url, requestBody)
+	req, err := http.NewRequestWithContext(p.ctx, api.Method, url, requestBody)
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Add("Accept", utils.HttpAcceptPublic)
-
-	fmt.Println(req.RequestURI)
 
 	for _, header := range headers {
 		req.Header.Add(header.Name, header.Value)
@@ -210,9 +210,9 @@ func (q *pos3) auth() (authRes structs.TokenResponse, err error) {
 	requestByte, _ := json.Marshal(body)
 	requestBody := bytes.NewReader(requestByte)
 
-	req, err := http.NewRequest(TokenAPI.Method, TokenAPI.Url, requestBody)
+	req, err := http.NewRequestWithContext(q.ctx, TokenAPI.Method, TokenAPI.Url, requestBody)
 	if err != nil {
-		fmt.Println(err.Error())
+		return authRes, err
 	}
 	req.Header.Add("Accept", utils.HttpAcceptPrivate)
 	req.Header.Add("Content-Type", utils.HttpContentType)
@@ -231,20 +231,18 @@ func (q *pos3) auth() (authRes structs.TokenResponse, err error) {
 
 func (p *pos3) httpPosRequest(body interface{}, api utils.API, ext string, headers []CustomHeader) ([]byte, error) {
 
-	var requestByte []byte
 	var requestBody *bytes.Reader
 	if body == nil {
 		requestBody = bytes.NewReader(nil)
 	} else {
-		requestByte, _ = json.Marshal(body)
+		requestByte, _ := json.Marshal(body)
 		requestBody = bytes.NewReader(requestByte)
 	}
 
-	req, err := http.NewRequest(api.Method, p.posEndpoint+api.Url+ext, requestBody)
+	req, err := http.NewRequestWithContext(p.ctx, api.Method, p.posEndpoint+api.Url+ext, requestBody)
 	if err != nil {
 		return nil, err
 	}
-	// req.Header.Add("Accept", utils.HttpAcceptPublic)
 	req.Header.Add("Content-type", utils.HttpAcceptPrivate)
 	for _, header := range headers {
 		req.Header.Add(header.Name, header.Value)
@@ -266,8 +264,5 @@ func (p *pos3) httpPosRequest(body interface{}, api utils.API, ext string, heade
 	if err != nil {
 		return nil, err
 	}
-	// if res.StatusCode != 200 {
-	// 	return nil, errors.New(string(response))
-	// }
 	return response, nil
 }

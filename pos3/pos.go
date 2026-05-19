@@ -56,10 +56,6 @@ func (p *pos3) BankAccounts(tin string) ([]structs.BankAccountData, error) {
 	return resp, nil
 }
 
-func (p *pos3) GetMerchantTin() string {
-	return p.merchanTin
-}
-
-func (p *pos3) GetPosNo() string {
-	return p.posNo
-}
+func (p *pos3) GetMerchantTin() string { return p.merchanTin }
+func (p *pos3) GetPosNo() string       { return p.posNo }
+func (p *pos3) GetApiKey() string      { return p.apiKey }

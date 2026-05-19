@@ -73,7 +73,7 @@ type (
 
 func Register(db *gorm.DB) {
 	if err := db.AutoMigrate(&Ebarimt{}, &EbarimtReceipt{}, &EbarimtReceiptItem{}); err != nil {
-		fmt.Println("Ebarimt SDK DB Migration Error :%v", err.Error())
+		fmt.Printf("Ebarimt SDK DB Migration Error: %v\n", err.Error())
 	}
 }
 

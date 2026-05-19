@@ -9,13 +9,15 @@ const (
 )
 
 func NewSdk() *ebarimt3.EbarimtClient {
-	sdk := ebarimt3.New(ebarimt3.Input{
+	sdk, err := ebarimt3.New(ebarimt3.Input{
 		Endpoint:    "http://103.50.205.106:7080",
 		MerchantTin: "37900846788",
 		PosNo:       "101317341",
 		DB:          nil,
 		IsDev:       true,
 	})
-
+	if err != nil {
+		panic(err)
+	}
 	return sdk
 }
