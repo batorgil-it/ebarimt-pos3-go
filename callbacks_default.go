@@ -150,6 +150,9 @@ func saveDBCallback(e *EbarimtClient) {
 }
 
 // sendMailCallback emails the receipt when mail transport is configured.
+// The SMTP call is dispatched in a goroutine so the main Create call returns
+// without waiting for the mail server.  All fields are copied by value before
+// the goroutine starts to avoid data races with Statement reuse.
 func sendMailCallback(e *EbarimtClient) {
 	if e.Error != nil || e.Statement.ReceiptResponse == nil {
 		return
@@ -158,7 +161,7 @@ func sendMailCallback(e *EbarimtClient) {
 	if e.MailHost == "" || e.MailPort == "" || e.MailFrom == "" || e.MailPassword == "" || input.MailTo == "" {
 		return
 	}
-	ebarimt3SdkServices.SendMail(ebarimt3SdkServices.EmailInput{
+	mailInput := ebarimt3SdkServices.EmailInput{
 		Email:        input.MailTo,
 		From:         e.MailFrom,
 		Subject:      e.MailSubject,
@@ -168,7 +171,12 @@ func sendMailCallback(e *EbarimtClient) {
 		SmtpPort:     e.MailPort,
 		TemplatePath: e.TemplatePath,
 		Response:     *e.Statement.ReceiptResponse,
-	})
+	}
+	go func() {
+		if err := ebarimt3SdkServices.SendMail(mailInput); err != nil {
+			fmt.Println("Ebarimt send mail error:", err)
+		}
+	}()
 }
 
 // ─── receiptSend callbacks ────────────────────────────────────────────────────

@@ -88,10 +88,6 @@ func New(input Input) (*EbarimtClient, error) {
 		IsDev:       input.IsDev,
 	})
 
-	if input.DB != nil {
-		ebarimt3SdkServices.Register(input.DB)
-	}
-
 	e := &EbarimtClient{
 		Pos3:         posv3,
 		DB:           input.DB,
@@ -115,6 +111,13 @@ func New(input Input) (*EbarimtClient, error) {
 	}
 
 	return e, nil
+}
+
+func (e *EbarimtClient) InitializeDB() error {
+	if e.DB != nil {
+		ebarimt3SdkServices.Register(e.DB)
+	}
+	return nil
 }
 
 // ─── Plugin API ───────────────────────────────────────────────────────────────
@@ -478,4 +481,3 @@ func (e *EbarimtClient) CalculateTotals(items []models.CreateItemInputModel) (*m
 
 	return &output, nil
 }
-

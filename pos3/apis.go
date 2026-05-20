@@ -13,6 +13,24 @@ import (
 	"github.com/batorgil-it/ebarimt-pos3-go/utils"
 )
 
+// httpClient is shared across all pos3 instances.  The transport is tuned for
+// 100-200 requests/second against a small number of hosts:
+//
+//   - MaxIdleConnsPerHost=150 keeps enough idle connections available so that
+//     requests at peak rate never wait for a new TCP/TLS handshake.
+//   - A 30-second client Timeout prevents hung goroutines when an upstream
+//     endpoint stalls; adjust per environment if POS calls can take longer.
+var httpClient = &http.Client{
+	Timeout: 30 * time.Second,
+	Transport: &http.Transport{
+		MaxIdleConns:        300,
+		MaxIdleConnsPerHost: 150,
+		IdleConnTimeout:     90 * time.Second,
+		TLSHandshakeTimeout: 10 * time.Second,
+		DisableKeepAlives:   false,
+	},
+}
+
 var (
 	TokenAPI = utils.API{
 		// https://developer.itc.gov.mn/docs/ebarimt-api/h4qz7kqjzd3p3-token-avah
@@ -174,7 +192,7 @@ func (p *pos3) httpRequest(body interface{}, api utils.API, ext string, headers 
 		p.token = &token
 		req.Header.Add("Authorization", "Bearer "+p.token.AccessToken)
 	}
-	res, err := http.DefaultClient.Do(req)
+	res, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -216,7 +234,7 @@ func (q *pos3) auth() (authRes structs.TokenResponse, err error) {
 	}
 	req.Header.Add("Accept", utils.HttpAcceptPrivate)
 	req.Header.Add("Content-Type", utils.HttpContentType)
-	res, err := http.DefaultClient.Do(req)
+	res, err := httpClient.Do(req)
 	if err != nil {
 		return
 	}
@@ -255,7 +273,7 @@ func (p *pos3) httpPosRequest(body interface{}, api utils.API, ext string, heade
 		p.token = &token
 		req.Header.Add("Authorization", "Bearer "+p.token.AccessToken)
 	}
-	res, err := http.DefaultClient.Do(req)
+	res, err := httpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}

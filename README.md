@@ -113,3 +113,7 @@ For support, please open an issue in the GitHub repository or contact our suppor
 ## 🔒 Security
 
 For security concerns, please email security@techpartners.asia or open a security advisory in the GitHub repository.
+
+### Get latest tag
+
+git describe --tags --abbrev=0

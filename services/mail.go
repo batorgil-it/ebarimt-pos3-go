@@ -112,6 +112,7 @@ func SendMail(input EmailInput) error {
 	auth := smtp.PlainAuth("", input.User, input.Password, input.SmtpHost)
 
 	// Sending email.
+
 	err = smtp.SendMail(input.SmtpHost+":"+input.SmtpPort, auth, input.From, []string{input.Email}, fullEmail.Bytes())
 	if err != nil {
 		return err
